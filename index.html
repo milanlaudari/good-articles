@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Mobile menu toggle -->
+    <button class="mobile-menu-toggle">☰</button>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar show-on-desktop">
+        <div class="sidebar-header">
+            <h2>Milan Laudari</h2>
+        </div>
+        
+        <div class="sidebar-nav">
+            <a href="/" class="content-link">About</a>
+            <a href="/good-articles/index.html" class="content-link active">Good Articles</a>
+            <a href="/quotes/index.html" class="content-link">Quotes</a>
+            <a href="/books-notes/index.html" class="content-link">Books Notes</a>
+            <a href="/enginnering/index.html" class="content-link">Engineering</a>
+        </div>
+        
+        <div class="theme-switch-wrapper">
+            <span class="theme-icon">☀️</span>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
+            <span class="theme-icon">🌙</span>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="social-links">
+                <a href="https://x.com/MilLaudari" target="_blank">X</a>
+                <a href="https://github.com/milanlaudari" target="_blank">GitHub</a>
+                <a href="https://substack.com/@milanlaudari" target="_blank">Substack</a>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Main content area -->
+    <div class="content-wrapper">
+        <header>
+            <h1>Good Articles</h1>
+        </header>
+        
+        <main>
+            <ul>
+                <li><a href="https://factorio.substack.com/p/maybe-the-meaning-of-life-is-to-play?utm_source=profile&utm_medium=reader2" target="_blank">Maybe the meaning of life is to play Factorio!</a></li>
+                <li><a href="https://0oo.li/intent/1274/" target="_blank">Breakthroughs in Society</a></li>
+                <li><a href="https://samoburja.com/social-technology/" target="_blank">Social Technology</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1sBkJ8nZwyG_J1v_WLub-5RM4GhLWCf_b7ml8_qNgNsg/edit?gid=568223314#gid=568223314" target="_blank">Sci-Fi Idea Bank</a></li>
+                <li><a href="http://www.technovelgy.com/" target="_blank">Inventions, technology and ideas of science fiction writers</a></li>
+                <li><a href="https://caseyhandmer.wordpress.com/2023/08/25/you-should-be-working-on-hardware/" target="_blank">You should be working on hardware</a></li>
+                <li><a href="https://worksinprogress.co/issue/nanotechnologys-spring/" target="_blank">Nanotechnology's spring</a></li>
+                <li><a href="https://www.palladiummag.com/2023/08/16/the-only-reason-to-explore-space/" target="_blank">The Only Reason to Explore Space</a></li>
+                <li><a href="https://fs.blog/first-principles/" target="_blank">First Principles</a></li>
+                <li><a href="https://substack.com/@andercot/p-141377380" target="_blank">A Brief History of SaaS and What's Next</a></li>
+                <li><a href="https://www.palladiummag.com/2024/08/16/the-limits-to-growth-are-interplanetary/" target="_blank">The Limits to Growth Are Interplanetary
+                </a></li>
+                <li><a href="https://waitbutwhy.com/2017/04/neuralink.html/" target="_blank">Neuralink and the Brain’s Magical Future</a></li>
+                <li><a href="https://foundersfund.com/2023/06/choose-good-quests/" target="_blank">Choose Good Quests</a></li>
+                <li><a href="https://samoburja.com/how-social-engineering-drives-technology/" target="_blank">How Social Engineering Drives Technology
+                </a></li>
+                <li><a href="https://blog.rootsofprogress.org/where-is-my-flying-car" target="_blank">Progress, stagnation, and flying cars</a></li>
+                <li><a href="https://energyandhumanity.com/" target="_blank">Energy and Human Abundance</a></li>
+                <li><a href="https://mattsclancy.substack.com/p/what-if-we-could-automate-invention" target="_blank">What if we could automate invention?
+                </a></li>
+
+            </ul>
+        </main>
+    </div>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            document.body.classList.toggle('sidebar-open');
+            
+            if (sidebar.classList.contains('active')) {
+                mobileMenuToggle.style.left = '240px';
+            } else {
+                mobileMenuToggle.style.left = '20px';
+            }
+        });
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('active') && 
+                !sidebar.contains(e.target) && 
+                e.target !== mobileMenuToggle) {
+                sidebar.classList.remove('active');
+                document.body.classList.remove('sidebar-open');
+                mobileMenuToggle.style.left = '20px';
+            }
+        });
+        
+        // Resize handler
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('active');
+                sidebar.classList.add('show-on-desktop');
+                document.body.classList.remove('sidebar-open');
+                mobileMenuToggle.style.left = '20px';
+            } else {
+                sidebar.classList.remove('show-on-desktop');
+            }
+        });
+        
+        // Initialize sidebar visibility based on screen size
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('show-on-desktop');
+            } else {
+                sidebar.classList.add('show-on-desktop');
+            }
+        });
+    </script>
+</body>
+</html>
